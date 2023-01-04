@@ -1,0 +1,54 @@
+module  Inv_cipher #(parameter nk=4) (input clk,reset,input[127:0]state_in,input[nk*32:0]initial_key,output[127:0]state_out);
+
+integer i;
+reg[127:0]temp,temp_two,currentKey;
+wire[127:0]subbed,shifted,mixed,tempOut;
+wire[128*(7+nk)-1:0]outKeys;
+KeyExpansion keys(clk,reset,initial_key,outKeys);
+InverseShiftRows shifting(subbed,shifted);
+subBytes_inv subbing(temp,subbed);
+AddRoundKey rounding(mixed,currentKey,tempOut);
+InvMixColumns mixing(shifted,mixed);
+
+assign state_out=temp;
+assign counter=i;
+always@(posedge clk)
+begin
+if(reset)
+begin
+i=0;
+temp='h0;
+end
+else if(i<(nk+7)*4+5 )
+begin
+i=i+1;
+if(i%4==1)
+begin
+currentKey=outKeys[(128*(7+nk)-1-(32*(i-5)))-:128];
+end
+if(i==1)
+begin
+temp<=state_in^initial_key;
+end
+if(i%4==2&&i>5&&i<=(nk+6)*4+4)
+begin
+
+temp_two
+=tempOut;
+end
+if(i%4==3&&i>9&&i<=(nk+6)*4+4)
+begin
+
+temp<=temp_two;
+end
+if(i==(nk+7)*4+4)
+begin
+temp<=subbed^currentKey;
+end
+
+end
+end
+
+
+
+endmodule

@@ -1,0 +1,30 @@
+module Test_bench();
+reg clk;
+reg reset;
+reg [255:0]key;
+wire [1919:0]outKeys;
+initial 
+begin
+
+reset=1;
+clk=0;
+key=256'h000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f;
+#1
+reset=0;
+#500
+reset=1;
+#100
+reset=0;
+end
+
+
+KeyExpansion #(.nk(8)) test(clk,reset,key,outKeys);
+always
+begin
+clk=~clk;
+#2;
+end
+
+
+
+endmodule

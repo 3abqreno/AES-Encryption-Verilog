@@ -1,0 +1,10 @@
+module RotWord(input[31:0] word,output[31:0] outWord);
+
+reg[31:0] shifted;
+
+
+
+assign outWord={word[23:0],word[31:24]};
+
+
+endmodule

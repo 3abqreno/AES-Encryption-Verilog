@@ -1,0 +1,123 @@
+module AddRoundKey(input [127:0]statein,key,output [127:0]stateout);
+integer i
+for (i=127; i>0; i=i-8)
+begin : addroundkey
+
+stateout[i:i-7]= xoring x(statein[i:i-7],key[i:i-7]);
+
+end
+
+endmodule
+
+
+module xoring (in1,in2,out);
+input [7:0]in1;
+input[7:0] in2;
+output [7:0] out;
+wire [7:0] out3;
+wire [7:0] out1;
+wire [7:0] out2;
+
+hexatobin ob1 (in1,out1);
+hexatobin ob2 (in2,out2);
+
+
+
+assign out3= {out1[7:0] ^ out2 [7:0]};
+ConvertToHexa obj(out3,out);
+
+endmodule
+
+
+module BinaryToHexa
+( input [3:0] bin,
+output [3:0] hexa
+);
+assign hexa=
+(bin==4'b0000) ?4'h0 :
+(bin==4'b0001) ?4'h1 :
+(bin==4'b0010) ?4'h2 :
+(bin==4'b0011) ?4'h3 :
+(bin==4'b0100) ?4'h4 :
+(bin==4'b0101) ?4'h5 :
+(bin==4'b0110) ?4'h6 :
+(bin==4'b0111) ?4'h7 :
+(bin==4'b1000) ?4'h8 :
+(bin==4'b1001) ?4'h9 :
+(bin==4'b1010) ?4'hA :
+(bin==4'b1011) ?4'hB :
+(bin==4'b1100) ?4'hC :
+(bin==4'b1101) ?4'hD :
+(bin==4'b1110) ?4'hE :
+(bin==4'b1111) ?4'hF : 4'hx;
+endmodule
+
+module ConvertToHexa(
+input [7:0] binary,
+output[7:0] Hexa
+);
+BinaryToHexa mostsignificant( binary[7:4],Hexa[7:4]);
+BinaryToHexa leastsignificant (binary[3:0],Hexa[3:0]);
+endmodule 
+
+
+
+
+module hexatobin (in,out);
+input [7:0]in;
+output[7:0] out;
+
+wire [3:0]out1;
+wire [3:0]out2;
+
+onedigithexa ob1(in[3:0], out1);
+onedigithexa ob2 (in[7:4],out2);
+
+
+
+assign out= {out2 [3:0], out1 [3:0]};
+
+endmodule
+
+
+
+module onedigithexa (in ,out);
+input [3:0]in;
+output reg [3:0] out;
+
+always @ (in)
+begin
+case (in)
+4'h0 :out= 4'b0000;
+4'h1 :out= 4'b0001;
+4'h2 :out= 4'b0010;
+4'h3 :out= 4'b0011;
+4'h4 :out= 4'b0100;
+4'h5 :out= 4'b0101;
+4'h6 :out= 4'b0110;
+4'h7 :out= 4'b0111;
+4'h8 :out= 4'b1000;
+4'h9 :out= 4'b1001;
+4'ha :out= 4'b1010;
+4'hb :out= 4'b1011;
+4'hc :out= 4'b1100;
+4'hd :out= 4'b1101;
+4'he :out= 4'b1110;
+4'hf :out= 4'b1111;
+4'hA :out= 4'b1010;
+4'hB :out= 4'b1011;
+4'hC :out=4'b1100;
+4'hD :out= 4'b1101;
+4'hE :out= 4'b1110;
+4'hF :out= 4'b1111;
+
+
+endcase
+
+end
+endmodule
+
+
+
+
+

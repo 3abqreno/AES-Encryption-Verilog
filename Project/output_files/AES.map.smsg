@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at KeyExpansion.v(15): always construct contains both blocking and non-blocking assignments File: E:/CUFE/2nd term/Advanced logic design/Logic Project/KeyExpansion.v Line: 15
+Warning (10268): Verilog HDL information at cipher.v(17): always construct contains both blocking and non-blocking assignments File: E:/CUFE/2nd term/Advanced logic design/Logic Project/cipher.v Line: 17
+Warning (10268): Verilog HDL information at Inv_cipher.v(17): always construct contains both blocking and non-blocking assignments File: E:/CUFE/2nd term/Advanced logic design/Logic Project/Inv_cipher.v Line: 17

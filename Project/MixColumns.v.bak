@@ -1,0 +1,211 @@
+module MixColumns(w1,w2,w3,w4,out1,out2,out3,out4);
+input [31:0] w1,w2,w3,w4;
+wire [31:0]bout1,bout2,bout3,bout4;
+output [31:0] out1,out2,out3,out4;
+wire [31:0]t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16;
+
+//first column
+//first element
+multiplytwo obj1 (w1[31:24],t1[7:0]);
+multiplythree obj2 (w1[23:16],t1[15:8]);
+multiplyone obj3 (w1[15:8],t1[23:16]);
+multiplyone obj4 (w1[7:0],t1[31:24]);
+assign bout1[31:24]=t1[7:0]^t1[15:8]^t1[23:16]^t1[31:24];
+ConvertToHexa objee1(bout1[31:24],out1[31:24]);
+//second element
+multiplyone obj5 (w1[31:24],t2[7:0]);
+multiplytwo obj6 (w1[23:16],t2[15:8]);
+multiplythree obj7 (w1[15:8],t2[23:16]);
+multiplyone obj8 (w1[7:0],t2[31:24]);
+assign bout1[23:16]=t2[7:0]^t2[15:8]^t2[23:16]^t2[31:24];
+ConvertToHexa objee2(bout1[23:16],out1[23:16]);
+//third element
+multiplyone obj9 (w1[31:24],t3[7:0]);
+multiplyone obj10 (w1[23:16],t3[15:8]);
+multiplytwo obj11 (w1[15:8],t3[23:16]);
+multiplythree obj12 (w1[7:0],t3[31:24]);
+assign bout1[15:8]=t3[7:0]^t3[15:8]^t3[23:16]^t3[31:24];
+ConvertToHexa objee3(bout1[15:8],out1[15:8]);
+//fourth element
+multiplythree obj13 (w1[31:24],t4[7:0]);
+multiplyone obj14 (w1[23:16],t4[15:8]);
+multiplyone obj15 (w1[15:8],t4[23:16]);
+multiplytwo obj16 (w1[7:0],t4[31:24]);
+assign bout1[7:0]=t4[7:0]^t4[15:8]^t4[23:16]^t4[31:24];
+ConvertToHexa objee4(bout1[7:0],out1[7:0]);
+//second column
+//first element
+multiplytwo ob1 (w2[31:24],t5[7:0]);
+multiplythree ob2 (w2[23:16],t5[15:8]);
+multiplyone ob3 (w2[15:8],t5[23:16]);
+multiplyone ob4 (w2[7:0],t5[31:24]);
+assign bout2[31:24]=t5[7:0]^t5[15:8]^t5[23:16]^t5[31:24];
+ConvertToHexa object1(bout2[31:24],out2[31:24]);
+//second element
+multiplyone ob5 (w2[31:24],t6[7:0]);
+multiplytwo ob6 (w2[23:16],t6[15:8]);
+multiplythree ob7 (w2[15:8],t6[23:16]);
+multiplyone ob8 (w2[7:0],t6[31:24]);
+assign bout2[23:16]=t6[7:0]^t6[15:8]^t6[23:16]^t6[31:24];
+ConvertToHexa object2(bout2[23:16],out2[23:16]);
+//third element
+multiplyone ob9 (w2[31:24],t7[7:0]);
+multiplyone ob10 (w2[23:16],t7[15:8]);
+multiplytwo ob11 (w2[15:8],t7[23:16]);
+multiplythree ob12 (w2[7:0],t7[31:24]);
+assign bout2[15:8]=t7[7:0]^t7[15:8]^t7[23:16]^t7[31:24];
+ConvertToHexa object3(bout2[15:8],out2[15:8]);
+//fourth element
+multiplythree ob13 (w2[31:24],t8[7:0]);
+multiplyone ob14 (w2[23:16],t8[15:8]);
+multiplyone ob15 (w2[15:8],t8[23:16]);
+multiplytwo ob16 (w2[7:0],t8[31:24]);
+assign bout2[7:0]=t8[7:0]^t8[15:8]^t8[23:16]^t8[31:24];
+ConvertToHexa object4(bout2[7:0],out2[7:0]);
+//third column
+//first element
+multiplytwo obje1 (w3[31:24],t9[7:0]);
+multiplythree obje2 (w3[23:16],t9[15:8]);
+multiplyone obje3 (w3[15:8],t9[23:16]);
+multiplyone obje4 (w3[7:0],t9[31:24]);
+assign bout3[31:24]=t9[7:0]^t9[15:8]^t9[23:16]^t9[31:24];
+ConvertToHexa objct(bout3[31:24],out3[31:24]);
+//second element
+multiplyone obje5 (w3[31:24],t10[7:0]);
+multiplytwo obje6 (w3[23:16],t10[15:8]);
+multiplythree obje7 (w3[15:8],t10[23:16]);
+multiplyone obje8 (w3[7:0],t10[31:24]);
+assign bout3[23:16]=t10[7:0]^t10[15:8]^t10[23:16]^t10[31:24];
+ConvertToHexa objct2(bout3[23:16],out3[23:16]);
+//third element
+multiplyone obje9 (w3[31:24],t11[7:0]);
+multiplyone obje10 (w3[23:16],t11[15:8]);
+multiplytwo obje11 (w3[15:8],t11[23:16]);
+multiplythree obje12 (w3[7:0],t11[31:24]);
+assign bout3[15:8]=t11[7:0]^t11[15:8]^t11[23:16]^t11[31:24];
+ConvertToHexa objct3(bout3[15:8],out3[15:8]);
+//fourth element
+multiplythree obje13 (w3[31:24],t12[7:0]);
+multiplyone obje14 (w3[23:16],t12[15:8]);
+multiplyone obje15 (w3[15:8],t12[23:16]);
+multiplytwo obje16 (w3[7:0],t12[31:24]);
+assign bout3[7:0]=t12[7:0]^t12[15:8]^t12[23:16]^t12[31:24];
+ConvertToHexa objct4(bout3[7:0],out3[7:0]);
+//fourth column
+//first element
+multiplytwo objec1 (w4[31:24],t13[7:0]);
+multiplythree objec2 (w4[23:16],t13[15:8]);
+multiplyone objec3 (w4[15:8],t13[23:16]);
+multiplyone objec4 (w4[7:0],t13[31:24]);
+assign bout4[31:24]=t13[7:0]^t13[15:8]^t13[23:16]^t13[31:24];
+ConvertToHexa objc(bout4[31:24],out4[31:24]);
+//second element
+multiplyone objec5 (w4[31:24],t14[7:0]);
+multiplytwo objec6 (w4[23:16],t14[15:8]);
+multiplythree objec7 (w4[15:8],t14[23:16]);
+multiplyone objec8 (w4[7:0],t14[31:24]);
+assign bout4[23:16]=t14[7:0]^t14[15:8]^t14[23:16]^t14[31:24];
+ConvertToHexa objc2(bout4[23:16],out4[23:16]);
+//third element
+multiplyone objec9 (w4[31:24],t15[7:0]);
+multiplyone objec10 (w4[23:16],t15[15:8]);
+multiplytwo objec11 (w4[15:8],t15[23:16]);
+multiplythree objec12 (w4[7:0],t15[31:24]);
+assign bout4[15:8]=t15[7:0]^t15[15:8]^t15[23:16]^t15[31:24];
+ConvertToHexa objc3(bout4[15:8],out4[15:8]);
+//fourth element
+multiplythree objec13 (w4[31:24],t16[7:0]);
+multiplyone objec14 (w4[23:16],t16[15:8]);
+multiplyone objec15 (w4[15:8],t16[23:16]);
+multiplytwo objec16 (w4[7:0],t16[31:24]);
+assign bout4[7:0]=t16[7:0]^t16[15:8]^t16[23:16]^t16[31:24];
+ConvertToHexa objc4(bout4[7:0],out4[7:0]);
+
+
+
+
+
+
+endmodule
+
+
+
+module multiplytwo (in,tout);
+input [7:0]in;
+output [7:0] tout;
+reg [7:0] out;
+wire [7:0] bin;
+reg [7:0] temp; 
+hexatobin obj(in,bin);
+
+always@(bin)
+begin
+if (bin[7] == 1'b0)
+out={bin[6:0] , 1'b0};
+else if (bin[7]==1'b1)
+begin
+temp={bin[6:0] ,1'b0};
+out=temp[7:0]^8'b00011011;
+
+end
+
+end
+assign tout={out[7:0]};
+
+
+endmodule
+
+
+
+module multiplyone (in,tout);
+input [7:0]in;
+output [7:0] tout;
+wire [7:0] bin;
+hexatobin obj(in,bin);
+assign tout=bin[7:0];
+
+
+
+
+endmodule
+
+
+
+
+module multiplythree (in,tout);
+
+input [7:0]in;
+output [7:0] tout;
+reg [7:0] out;
+wire [7:0] bin;
+reg [7:0] temp;
+hexatobin obj(in,bin);
+
+always@(bin)
+begin
+if (bin[7] == 1'b0)
+out={bin[6:0] , 1'b0};
+else if (bin[7]==1'b1)
+begin
+temp={bin[6:0] ,1'b0};
+out=temp[7:0]^8'b00011011;
+
+end
+
+end
+
+assign tout={out[7:0] ^ bin[7:0]};
+
+
+
+endmodule
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+module ShiftRows(
+input [127:0] in,
+output [127:0] out
+
+);
+wire [31:0] word0,word1,word2,word3;
+wire [31:0] sword0,sword1,sword2,sword3;
+BlockTostate obj(in,word0,word1,word2,word3);
+wire [7:0] temp,temp1,temp2;
+wire [7:0] temp3,temp4,temp5;
+//for the first row 
+assign sword0[31:24]=word0[31:24];
+assign sword1[31:24]=word1[31:24];
+assign sword2[31:24]=word2[31:24];
+assign sword3[31:24]=word3[31:24];
+//for the second row
+assign temp=word0[23:16];
+assign sword0[23:16]=word1[23:16];
+assign sword1[23:16]=word2[23:16];
+assign sword2[23:16]=word3[23:16];
+assign sword3[23:16]=temp;
+//for the third row
+assign temp1=word0[15:8];
+assign temp2=word1[15:8];
+assign sword0[15:8]=word2[15:8];
+assign sword1[15:8]=word3[15:8];
+assign sword2[15:8]=temp1;
+assign sword3[15:8]=temp2;
+//for the forth row 
+assign temp3=word0[7:0];
+assign temp4=word1[7:0];
+assign temp5=word2[7:0];
+assign sword0[7:0]=word3[7:0];
+assign sword1[7:0]=temp3;
+assign sword2[7:0]=temp4;
+assign sword3[7:0]=temp5;
+assign out ={sword0[31:0],sword1[31:0],sword2[31:0],sword3[31:0]};
+endmodule 
